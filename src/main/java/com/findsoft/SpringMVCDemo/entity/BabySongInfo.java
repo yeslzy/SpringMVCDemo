@@ -1,7 +1,10 @@
 package com.findsoft.SpringMVCDemo.entity;
 
-public class BabySongInfo {
-	public int id;//主键id
+import java.io.Serializable;
+
+public class BabySongInfo implements Serializable{
+    private static final long serialVersionUID = 3279084551857383559L;
+    public int id;//主键id
 	public String name;//歌曲名称
 	public String author;//歌曲作者
 	public String singer;//歌唱家
