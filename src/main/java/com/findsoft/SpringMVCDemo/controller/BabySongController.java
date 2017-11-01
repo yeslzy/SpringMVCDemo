@@ -43,4 +43,20 @@ public class BabySongController {
         result.setResultObj(info);
         return result;
     }
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public HttpResponseResult updateTheSong(@RequestParam String name,@RequestParam int id ) {
+        HttpResponseResult result = new HttpResponseResult();
+        int a=songService.updateBabySong(id, name);
+        if(a>0){
+            result.setResultDesc("修改成功");
+            result.setResultFlag(1);
+            result.setResultObj("修改成功");
+        }else{
+            result.setResultDesc("修改失败");
+            result.setResultFlag(0);
+            result.setResultObj("修改失败");
+        }
+        return result;
+
+    }
 }
