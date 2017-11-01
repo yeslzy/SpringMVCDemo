@@ -18,7 +18,7 @@ public class RedisTemplateConfig {
     private final String REDIS_HOST = "127.0.0.1";
     private final int REDIS_PORT = 6379;
     private final String REDIS_PASSWORD = "lzyredis";
-    private final long DEFAULT_EXPIRE_TIME_SECOND= 600;//默认key设置的缓存时间是10分钟
+    private final long DEFAULT_EXPIRE_TIME_SECOND= 1800;//默认key设置的缓存时间是30分钟
     
     @Bean
     public CacheManager getCacheManager(){
