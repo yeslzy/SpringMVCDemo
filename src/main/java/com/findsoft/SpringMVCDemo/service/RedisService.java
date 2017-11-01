@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+/**引入Spring 的RedisTemplate，此类暂时不用
+ * @author Administrator
+ *
+ */
 @Component
 public class RedisService {
     @Autowired
