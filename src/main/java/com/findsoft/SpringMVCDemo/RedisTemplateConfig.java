@@ -1,5 +1,7 @@
 package com.findsoft.SpringMVCDemo;
 
+import java.nio.charset.Charset;
+
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +12,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @ComponentScan
@@ -39,11 +44,18 @@ public class RedisTemplateConfig {
     public RedisTemplate<String, Object> getRedisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
         template.setConnectionFactory(getRedisFactory());
+        StringRedisSerializer stringSerializer=getStringRedisSerializer();
+        template.setKeySerializer(stringSerializer);//key和hashkey均使用字符串序列化，不设置的话，使用默认的jdk序列化的方式
+        template.setHashKeySerializer(stringSerializer);
         return template;
     }
 
     @Bean(name="stringRedisTemplate")
     public StringRedisTemplate getStringRedisTemplate() {
         return new StringRedisTemplate(getRedisFactory());
+    }
+    @Bean
+    public StringRedisSerializer getStringRedisSerializer(){
+        return new StringRedisSerializer(Charset.forName("UTF-8"));
     }
 }
