@@ -31,7 +31,7 @@ public class SongService {
      * @param name
      * @return
      */
-    @CacheEvict(value="getTheSong",key="#p0")
+    @CacheEvict(value="getTheSong",key="#p0+'song'")
     public int updateBabySong(int id, String name) {
         int result = 0;
         String sql = "update baby_song_info set name=? where id= ?";
@@ -40,7 +40,7 @@ public class SongService {
         return result;
     }
     
-    @CacheEvict(value="getTheSong",key="#p0")
+    @CacheEvict(value="getTheSong",key="#p0+'song'")
     public int deleteTheSong(int id) {
         int result = 0;
         String sql = "delete from  baby_song_info  where id= ?";
@@ -55,7 +55,8 @@ public class SongService {
     }
 
     /**
-     * 可以使用注解引入缓存，也可以使用redisTemplate,用起来不要太爽。且能单独设置key的失效时间，不受默认失效时间的限制
+     * 可以使用注解引入缓存，也可以使用redisTemplate,用起来不要太爽。
+     * 且能单独设置key的失效时间，不受默认失效时间的限制
      * @return
      */
     public List<BabySongInfo> getSongList() {
@@ -83,7 +84,7 @@ public class SongService {
      * @param id
      * @return
      */
-    @Cacheable(value="getTheSong",key="#p0")
+    @Cacheable(value="getTheSong",key="#p0+'song'")
     public BabySongInfo getBabySongById(int id){
         String sql=" select * from baby_song_info where id=? ";
         Map map=jdbcTemplate.queryForMap(sql, new Object[]{id});
