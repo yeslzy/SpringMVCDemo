@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.findsoft.SpringMVCDemo.entity.BabySongInfo;
 import com.findsoft.SpringMVCDemo.service.RedisService;
 import com.findsoft.SpringMVCDemo.service.SongService;
-
-/**
- * 
- * 
- * @author lzy
- *
- */
 @Controller
 public class HomePageController {
     @Autowired
